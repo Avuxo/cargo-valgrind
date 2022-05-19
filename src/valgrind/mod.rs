@@ -55,6 +55,7 @@ where
     let address = listener.local_addr().map_err(|_| Error::SocketConnection)?;
 
     let cargo = Command::new("valgrind")
+        .arg("--tool=dhat")
         .arg("--xml=yes")
         .arg(format!("--xml-socket={}:{}", address.ip(), address.port()))
         .args(command)
